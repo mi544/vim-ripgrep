@@ -1,11 +1,47 @@
 # vim-ripgrep
 
-    :Rg <string|pattern>
+Use `rg` as you would in your terminal, but in Vim. The results are passed into
+the quickfix list.
 
-Word under cursor will be searched if no argument is passed to `Rg`
+By default `:Rg` searches in the current working directory; you can get your
+current working directory by running `:pwd` in Vim.
 
-## configuration
+netrw users with the
+`g:netrw_keepdir` flag set to `0`, your working directory changes as you browse
+around in netrw so be prerared that searches will happen in your working
+directory which may not always be what you want.
 
+## Usage
+
+```
+- Simple standard rg search in the current working directory
+:Rg cat
+
+- Case incensitive search
+:Rg -i cat
+:Rg cat -i
+
+- Multiline search with the `.` character including newlines
+:Rg --multiline --multiline-dotall '<html>.*</html>'
+```
+
+The word under cursor is searched if no argument is passed to `:Rg`.
+
+## Installation
+
+To install using [vim-plug](https://github.com/junegunn/vim-plug):
+
+```
+Plug 'mi544/vim-ripgrep'
+```
+
+To install using [dein](https://github.com/Shougo/dein.vim):
+
+```
+call dein#add('mi544/vim-ripgrep')
+```
+
+## Configuration
 
 | Setting              | Default                   | Details
 | ---------------------|---------------------------|----------
@@ -17,8 +53,10 @@ Word under cursor will be searched if no argument is passed to `Rg`
 | g:rg_root_types      | ['.git']                  | list of files/dir found in project root
 | g:rg_window_location | botright                  | quickfix window location
     
-## misc
+## Misc
 
 Show root search dir
 
-    :RgRoot
+```
+:RgRoot
+```
